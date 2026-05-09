@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tambahBarang = mysqli_query($koneksi, $query);
 
     if ($tambahBarang) {
-        echo "Berhasil menambahkan barang";
+        echo "Berhasil menambahkan barang yes";
     } else {
         echo "Gagal menambahkan barang: " . mysqli_error($koneksi);
     }
