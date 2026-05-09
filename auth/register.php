@@ -61,7 +61,7 @@
             <form id="form">
                 <div class="mb-3">
                     <label class="form-label">NIS</label>
-                    <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS" required>
+                    <input type="text" name="nistek" class="form-control" placeholder="Masukkan NIS" required>
                 </div>
 
                 <div class="mb-3">
@@ -74,25 +74,7 @@
                     <input type="password" name="password" class="form-control" placeholder="Masukkan Password" required>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Jurusan</label>
-                        <select name="jurusan" class="form-select" required>
-                            <option value="" disabled selected hidden>Pilih jurusan</option>
-                            <option value="PPLG">PPLG</option>
-                            <option value="DKV">DKV</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Kelas</label>
-                        <select name="kelas" class="form-select" required>
-                            <option value="" disabled selected hidden>Pilih kelas</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
-                    </div>
-                </div>
+                
 
                 <div class="mb-3">
                     <label class="form-label">No. Telepon</label>

@@ -3,15 +3,13 @@ require_once "../db/koneksi.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nis = $_POST['nis'];
+    $nis = $_POST['nistek'];
     $nama = $_POST['nama'];
     $password = $_POST['password'];
-    $jurusan = $_POST['jurusan'];
-    $no_tlp = $_POST['no_tlp'];
     $alamat = $_POST['alamat'];
-    $kelas = $_POST['kelas'];
+    $no_tlp = $_POST['no_tlp'];
 
-    $cekKetersediaanNis = mysqli_query($koneksi, "SELECT `nis` FROM `peminjam` WHERE nis = '$nis'");
+    $cekKetersediaanNis = mysqli_query($koneksi, "SELECT `nistek` FROM `peminjam` WHERE nistek = '$nis'");
     $cekKetersediaanNama = mysqli_query($koneksi, "SELECT `nama` FROM `peminjam` WHERE nama = '$nama'");
 
     if (mysqli_num_rows($cekKetersediaanNis) > 0) {
@@ -20,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<div class='alert-error'>Nama Sudah terdaftar.</div>";
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $queryInsert = "INSERT INTO `peminjam`(`nistek`, `nama`, `password`, `jurusan`, `no_tlp`, `alamat`, `kelas`) VALUES ('$nis','$nama','$hashedPassword','$jurusan','$no_tlp','$alamat','$kelas')";
+        $queryInsert = "INSERT INTO `peminjam`(`nistek`, `nama`, `password`, `no_tlp`, `alamat`) VALUES ('$nis','$nama','$hashedPassword','$no_tlp','$alamat')";
         $penambahanSiswa = mysqli_query($koneksi, $queryInsert);
 
         if ($penambahanSiswa) {

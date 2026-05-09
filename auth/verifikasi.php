@@ -1,6 +1,8 @@
 <?php
 include('../db/koneksi.php');
 $nistek = $_GET['nistek'];
+$peminjamRaw = mysqli_query($koneksi, "SELECT * FROM `peminjam` WHERE `nistek` = '$nistek'");
+$peminjam = mysqli_fetch_array($peminjamRaw);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -54,7 +56,7 @@ $nistek = $_GET['nistek'];
                     </div>
                     
                     <h2 class="fw-bold mb-2">Permintaan Diproses</h2>
-                    <p class="text-muted">Halo, <strong>Siswa #12345</strong>. Permintaan peminjaman alat kamu telah terkirim dan sedang menunggu validasi dari tim Sarpras.</p>
+                    <p class="text-muted">Halo, <strong><?php echo $peminjam['nama'] ?></strong>. Silahkan pergi keruangan sarpras untuk melanjutkan proses aktivasi akun kamu.</p>
 
                     <div class="text-start my-5 px-4">
                         <div class="d-flex align-items-center mb-4 step-active ps-3">
@@ -62,30 +64,11 @@ $nistek = $_GET['nistek'];
                                 <i class="fas fa-check"></i>
                             </div>
                             <div>
-                                <h6 class="mb-0 fw-bold">Pengajuan Berhasil</h6>
+                                <h6 class="mb-0 fw-bold">Pembuatan akun berhasil!</h6>
                                 <small class="text-muted">Data sudah masuk ke database</small>
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-center mb-4 step-active ps-3">
-                            <div class="me-3 bg-warning text-white rounded-circle d-flex align-items-center justify-content-center pulse-animation" style="width: 35px; height: 35px;">
-                                <i class="fas fa-spinner fa-spin"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-0 fw-bold text-warning">Menunggu Konfirmasi Sarpras</h6>
-                                <small class="text-muted">Admin sedang memeriksa ketersediaan barang</small>
-                            </div>
-                        </div>
-
-                        <div class="d-flex align-items-center step-pending ps-3">
-                            <div class="me-3 bg-light text-muted rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
-                                <i class="fas fa-key"></i>
-                            </div>
-                            <div>
-                                <h6 class="mb-0 fw-bold">Pengambilan Barang</h6>
-                                <small class="text-muted">Tahap akhir setelah disetujui</small>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="border-top pt-4">
