@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | Mahput Inventory</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -56,12 +57,12 @@
         <div class="register-container">
             <h3 class="text-center mb-4">Form Login</h3>
 
-            <div id="display"></div>
+            <!-- <div id="display"></div> -->
 
             <form id="form">
                 <div class="mb-3">
-                    <label class="form-label">NIS</label>
-                    <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS" required>
+                    <label class="form-label">NIS/GTK</label>
+                    <input type="text" name="nistek" class="form-control" placeholder="Masukkan NIS" required>
                 </div>
 
                 <div class="mb-3">
@@ -77,6 +78,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.js"></script>
 
 <script>
     const form = document.getElementById('form');
@@ -84,7 +86,7 @@
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        displayRespon.innerHTML = '<div class="alert alert-info">Memproses...</div>';
+        // displayRespon.innerHTML = '<div class="alert alert-info">Memproses...</div>';
 
         const dataForm = new FormData(form);
 
@@ -94,25 +96,32 @@
         })
         .then(response => response.text())
         .then(data => {
-            // Logika Einstein: Cek apakah string mengandung 'success'
             if (data.includes('success')) {
-                // Pecah string untuk mengambil ID (nis)
-                const part = data.split('|');
-                const id = part[1];
 
-                displayRespon.innerHTML = "<div class='alert-success'>Berhasil login! Mengalihkan...</div>";
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil login!',
+                    text: 'mengalihkan ke dashboard...'
+                })
                 
-                // Eksekusi pengalihan di sini, di lingkungan JS yang hidup
                 setTimeout(() => {
-                    window.location.href = `verifikasi.php?nistek=${id}`;
+                    window.location.href = '../index.php'
                 }, 1000); 
             } else {
-                // Tampilkan pesan error jika bukan 'success'
-                displayRespon.innerHTML = data;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Maaf ada akun salah!',
+                    text: 'nis/gtk atau password tidak sesuai.'
+                })
+                
             }
         })
         .catch(error => {
-            displayRespon.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Maaf ada kesalahan!',
+                    text: `${error.message}`
+                })
         });
     });
 </script>
