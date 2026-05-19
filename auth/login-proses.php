@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordValid = password_verify($password, $ambilPassword);
 
         if ($passwordValid) {
-            // Berikan penanda khusus 'success' dan kirimkan ID-nya
             echo "success|" . $valid['nistek']; 
             exit;
         } else {

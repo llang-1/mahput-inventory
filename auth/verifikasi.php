@@ -106,8 +106,6 @@ $peminjam = mysqli_fetch_array($peminjamRaw);
 
             // Simulasi loading 1.5 detik
             setTimeout(() => {
-                // Di sini biasanya Anda akan melakukan AJAX/Fetch ke server
-                // window.location.reload(); 
                 
                 btn.innerHTML = '<i class="fas fa-sync-alt me-2"></i> Refresh Status';
                 btn.disabled = false;

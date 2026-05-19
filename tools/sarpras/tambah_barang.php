@@ -151,13 +151,13 @@ include('../../db/koneksi.php');
             </div>
         </div>
 
-        <!-- Feedback Message Area -->
+
         <div id="toast"
             class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-xl opacity-0 transition-opacity pointer-events-none">
             Data berhasil disimpan!
         </div>
 
-        <!-- Footer Info -->
+
         <p class="text-center text-slate-400 text-sm mt-8">
             &copy; 2024 Sistem Inventaris Sekolah. Aplikasi Internal.
         </p>
@@ -178,14 +178,14 @@ include('../../db/koneksi.php');
         body: formData
     })
     .then(response => {
-        // Cek jika file PHP-nya ada dan tidak error (status 200)
+
         if (!response.ok) throw new Error('File PHP tidak ditemukan atau Server Error');
         return response.text();
     })
     .then(data => {
-        console.log("Respon Server:", data); // Lihat hasilnya di console F12
+        console.log("Respon Server:", data);
         
-        // Munculkan Toast
+
         toast.classList.replace('opacity-0', 'opacity-100');
         
         setTimeout(() => {
