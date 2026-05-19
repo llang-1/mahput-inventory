@@ -85,7 +85,8 @@ include('../../db/koneksi.php');
                                 class="border border-slate-300 rounded-lg px-4 py-2.5 bg-white text-slate-700 form-input-focus transition-all"
                                 required>
                                 <option value="" disabled selected>Pilih Kondisi</option>
-                                <option value="baik">Sangat Baik</option>
+                                <option value="sangat_baik">Sangat Baik</option>
+                                <option value="baik">Baik</option>
                                 <option value="rusak_ringan">Rusak Ringan</option>
                                 <option value="rusak_berat">Rusak Berat</option>
                             </select>
@@ -173,19 +174,15 @@ include('../../db/koneksi.php');
     e.preventDefault();
     const formData = new FormData(form);
 
-    fetch("proses_tambah_barang.php", {
+    fetch("proses-tambah-barang.php", {
         method: "POST",
         body: formData
     })
     .then(response => {
-        // Cek jika file PHP-nya ada dan tidak error (status 200)
-        if (!response.ok) throw new Error('File PHP tidak ditemukan atau Server Error');
         return response.text();
     })
     .then(data => {
-        console.log("Respon Server:", data); // Lihat hasilnya di console F12
-        
-        // Munculkan Toast
+
         toast.classList.replace('opacity-0', 'opacity-100');
         
         setTimeout(() => {
@@ -194,7 +191,7 @@ include('../../db/koneksi.php');
         }, 3000);
     })
     .catch(error => {
-        alert("Error: " + error.message);
+
         console.error("Detail Error:", error);
     });
 });

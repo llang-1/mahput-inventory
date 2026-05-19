@@ -1,11 +1,12 @@
 <?php
-include('../db/koneksi.php');
-
+session_start();
+require('../db/koneksi.php');
+global $koneksi;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nis = $_POST['nis'];
+    $nistek = $_POST['nistek'];
     $password = $_POST['password'];
 
-    $loginValid = mysqli_query($koneksi, "SELECT * FROM `peminjam` WHERE `nistek` = '$nis'");
+    $loginValid = mysqli_query($koneksi, "SELECT * FROM `peminjam` WHERE `nistek` = '$nistek'");
     $valid = mysqli_fetch_assoc($loginValid);
 
     if ($valid) {
@@ -13,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $passwordValid = password_verify($password, $ambilPassword);
 
         if ($passwordValid) {
-            // Berikan penanda khusus 'success' dan kirimkan ID-nya
-            echo "success|" . $valid['nistek']; 
+            echo "success"; 
+            $_SESSION['token-login'] = $nistek;
             exit;
         } else {
             echo "<div class='alert-error'>Gagal login <br> Password invalid.</div>";

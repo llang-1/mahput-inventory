@@ -1,6 +1,7 @@
 <?php
 
 include('../../db/koneksi.php'); 
+global $koneksi;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama_barang = $_POST['nama_barang'];
